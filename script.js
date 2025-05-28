@@ -14,16 +14,18 @@ kissBtn.addEventListener('click', () => {
     kiss.remove();
   }, 2000);
 
-  // Show the music button if it's hidden
+  // Show the music button
   if (musicBtn.style.display === 'none') {
     musicBtn.style.display = 'inline-block';
   }
 
-  // Auto-play music on first kiss
-  if (bgMusic.paused) {
-    bgMusic.play();
+  // Try to play music on first kiss
+  bgMusic.play().then(() => {
     musicBtn.textContent = '⏸️ Pause Music';
-  }
+  }).catch(err => {
+    console.log("Autoplay was blocked:", err);
+    musicBtn.textContent = '🎵 Play Music';
+  });
 });
 
 musicBtn.addEventListener('click', () => {
