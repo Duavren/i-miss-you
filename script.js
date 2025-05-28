@@ -14,17 +14,16 @@ kissBtn.addEventListener('click', () => {
     kiss.remove();
   }, 2000);
 
-  // Show the music button
+  // Show the music control button
   if (musicBtn.style.display === 'none') {
     musicBtn.style.display = 'inline-block';
   }
 
-  // Try to play music on first kiss
+  // Attempt to play music (browser will allow since this is after a user interaction)
   bgMusic.play().then(() => {
     musicBtn.textContent = '⏸️ Pause Music';
-  }).catch(err => {
-    console.log("Autoplay was blocked:", err);
-    musicBtn.textContent = '🎵 Play Music';
+  }).catch((error) => {
+    console.log("Autoplay blocked:", error);
   });
 });
 
